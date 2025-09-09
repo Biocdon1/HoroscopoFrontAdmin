@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://horoscopoback.onrender.com/api',
+  baseURL: 'https://horoscopoback.onrender.com',
 });
 
 // Interceptor: adjunta el token a cada request
@@ -30,7 +30,7 @@ export const actualizarSignoCompleto = async (nombre, payload) => {
   return data;
 };
 export const loginUsuario = async (credentials) => {
-  const { data } = await api.post('/auth/login', credentials);
+  const { data } = await api.post('/api/auth/login', credentials);
   return data;
 };
 export default api;
