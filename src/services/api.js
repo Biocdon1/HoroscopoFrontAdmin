@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://horoscopo-back-mocha.vercel.app',
+  baseURL: 'https://horoscopoback.onrender.com',
 });
 
 // Interceptor: adjunta el token a cada request
