@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://horoscopoback.onrender.com',
+  baseURL: 'https://horoscopoback.onrender.com/api',
 });
 
 // Interceptor: adjunta el token a cada request
