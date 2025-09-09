@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BACKEND_BASE_URL } from '../config'; // ajusta la ruta si es necesario
+import { loginUsuario } from '../services/api'; // ajusta la ruta si es necesario
 
 const Login = () => {
   const [usuario, setUsuario] = useState('');
@@ -13,15 +13,9 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch(`${BACKEND_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: usuario, password: contrasena }),
-      });
+      const data = await loginUsuario({ username: usuario, password: contrasena });
 
-      const data = await response.json();
-
-      if (response.ok && data.token) {
+      if (data.token) {
         localStorage.setItem('authToken', data.token);
         navigate('/admin/dashboard');
       } else {

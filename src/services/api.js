@@ -25,9 +25,7 @@ export const obtenerSignoPorNombre = async (nombre) => {
   const { data } = await api.get(`/signos/${nombre}`);
   return data;
 };
-
-// Ahora este endpoint llama al nuevo updateSignComplete del backend
-export const actualizarSignoCompleto = async (nombre, payload) => {
-  const { data } = await api.put(`/signos/${nombre}`, payload);
+export const loginUsuario = async (credentials) => {
+  const { data } = await api.post('/auth/login', credentials);
   return data;
 };
