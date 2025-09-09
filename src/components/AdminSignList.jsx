@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { obtenerTodosLosSignos } from '../services/api';
 import AdminNavBar from '../components/AdminNavBar';
 import api from '../services/api'; 
 
@@ -11,19 +11,16 @@ const AdminSignList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    axios.get('/api/signos', {
-      headers: { Authorization: `Bearer ${token}` }
+  obtenerTodosLosSignos()
+    .then(res => {
+      const ordenados = Object.entries(res).map(([nombre, datos]) => ({
+        nombre,
+        ...datos
+      })).sort((a, b) => a.nombre.localeCompare(b.nombre));
+      setSignos(ordenados);
     })
-      .then(res => {
-        const ordenados = Object.entries(res.data).map(([nombre, datos]) => ({
-          nombre,
-          ...datos
-        })).sort((a, b) => a.nombre.localeCompare(b.nombre));
-        setSignos(ordenados);
-      })
-      .catch(err => console.error('Error al cargar signos:', err));
-  }, []);
+    .catch(err => console.error('Error al cargar signos:', err));
+}, []);
 
   const handleEditar = (signo) => {
     navigate(`/admin/editor?signo=${signo}`);

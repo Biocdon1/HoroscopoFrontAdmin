@@ -57,7 +57,7 @@ const AdminPreview = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await api.get('/signos'); // ✅ usa instancia con token
+        const res = await api.get('/api/signos'); // ✅ usa instancia con token
         setHoroscopes(res.data);
       } catch (err) {
         console.error('Error al cargar horóscopos:', err);
