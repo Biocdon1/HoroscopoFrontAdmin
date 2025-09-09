@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Admin.css';
-import axios from 'axios';
 import AdminNavBar from '../components/AdminNavBar';
 import AriesImg from '../assets/signs/Aries.png';
 import TaurusImg from '../assets/signs/Taurus.png';
@@ -14,10 +13,9 @@ import SagittariusImg from '../assets/signs/Sagittarius.png';
 import CapricornImg from '../assets/signs/Capricorn.png';
 import AquariusImg from '../assets/signs/Aquarius.png';
 import PiscesImg from '../assets/signs/Pisces.png';
-import api from '../services/api'; // Asegúrate de que `api` sea la instancia de Axios
+import api from '../services/api'; // ✅ instancia de Axios con baseURL y token
 
 const BACKEND_BASE_URL = api.defaults.baseURL;
-
 
 const signs = [
   { name: 'aries', label: 'Aries', imageUrl: AriesImg },
@@ -35,7 +33,6 @@ const signs = [
 ];
 
 const SignCard = ({ name, imageUrl, defaultText, imagen }) => {
-  // Si imagen existe, aseguramos que sea URL absoluta
   const imagenFinal = imagen ? `${BACKEND_BASE_URL}${imagen}` : null;
 
   return (
@@ -60,10 +57,7 @@ const AdminPreview = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('authToken');
-        const res = await axios.get('/api/signos', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const res = await api.get('/signos'); // ✅ usa instancia con token
         setHoroscopes(res.data);
       } catch (err) {
         console.error('Error al cargar horóscopos:', err);
