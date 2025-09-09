@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AdminNavBar from '../components/AdminNavBar';
+import api from '../services/api'; 
 
-const BACKEND_BASE_URL = 'http://localhost:5000';
+const BACKEND_BASE_URL = api.defaults.baseURL;
 
 const AdminSignList = () => {
   const [signos, setSignos] = useState([]);

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import AdminNavBar from './AdminNavBar';
 import { obtenerSignoPorNombre, actualizarSignoCompleto } from '../services/api';
 import '../styles/Admin.css';
+import api from '../services/api'; 
 
-const BACKEND_BASE_URL = 'http://localhost:5000';
+const BACKEND_BASE_URL = api.defaults.baseURL;
+
 
 const signos = [
   'aries','taurus','gemini','cancer',

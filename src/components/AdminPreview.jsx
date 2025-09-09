@@ -14,8 +14,10 @@ import SagittariusImg from '../assets/signs/Sagittarius.png';
 import CapricornImg from '../assets/signs/Capricorn.png';
 import AquariusImg from '../assets/signs/Aquarius.png';
 import PiscesImg from '../assets/signs/Pisces.png';
+import api from '../services/api'; // Asegúrate de que `api` sea la instancia de Axios
 
-const BACKEND_BASE_URL = 'http://localhost:5000';
+const BACKEND_BASE_URL = api.defaults.baseURL;
+
 
 const signs = [
   { name: 'aries', label: 'Aries', imageUrl: AriesImg },
