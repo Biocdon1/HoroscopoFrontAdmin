@@ -25,6 +25,10 @@ export const obtenerSignoPorNombre = async (nombre) => {
   const { data } = await api.get(`/signos/${nombre}`);
   return data;
 };
+export const actualizarSignoCompleto = async (nombre, payload) => {
+  const { data } = await api.put(`/signos/${nombre}`, payload);
+  return data;
+};
 export const loginUsuario = async (credentials) => {
   const { data } = await api.post('/auth/login', credentials);
   return data;
