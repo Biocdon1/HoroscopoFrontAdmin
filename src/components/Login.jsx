@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_BASE_URL } from '../config'; // ajusta la ruta si es necesario
 
 const Login = () => {
   const [usuario, setUsuario] = useState('');
@@ -7,16 +8,12 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Base común para toda la API
-  const apiBase = import.meta.env.VITE_API_URL; // Ej: http://localhost:5000/api
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      // 🔹 Ruta completa al login
-      const response = await fetch(`${apiBase}/auth/login`, {
+      const response = await fetch(`${BACKEND_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: usuario, password: contrasena }),
